@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:shoping_application/core/utils/app_strings.dart';
 import 'package:shoping_application/shared/network/local/cache_helper.dart';
-import '../login/login_method.dart';
-import '../../shared/components/components.dart';
-import '../../shared/network/style/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../shared/components/components.dart';
+import '../../shared/network/style/colors.dart';
+import '../login/login_method.dart';
+
 class OnBoardingScreen extends StatefulWidget {
-  OnBoardingScreen({super.key});
+  const OnBoardingScreen({super.key});
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -17,8 +19,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     {
       'image': 'assets/images/0_1_(13).jpeg',
       'title': 'World of perfection',
-      'subTitle':
-          'Feel like you are a queen in the world of perfection, to find your best fits.'
+      'subTitle': 'Feel like you are a queen in the world of perfection, to find your best fits.'
     },
     {
       'image': 'assets/images/0_3_(12).png',
@@ -37,7 +38,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   void submit() {
     CacheHelper.saveData(key: 'onboarding', value: true).then((value) {
       if (value) {
-        navigatorAndFinsh(
+        navigatorAndFinish(
           context: context,
           widget: LoginMethod(),
         );
@@ -66,8 +67,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 }
               },
               controller: controller,
-              itemBuilder: (context, index) =>
-                  customeOnboarding(model: pages[index]),
+              itemBuilder: (context, index) => customeOnboarding(model: pages[index]),
               itemCount: pages.length,
             ),
           ),
@@ -114,7 +114,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     ),
                     height: 54,
                     child: Text(
-                      isLast ? 'Get Started' : 'Next',
+                      isLast ? 'Get Started' : AppStrings.next,
                       style: TextStyle(
                         color: subtextColor,
                         fontWeight: FontWeight.w400,
