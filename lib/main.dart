@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoping_application/layout/shop_layout_screen.dart';
-import 'package:shoping_application/module/login/login_method.dart';
 import 'package:shoping_application/module/on_boarding/on_boarding_screen.dart';
 import 'package:shoping_application/shared/components/constants.dart';
 import 'package:shoping_application/shared/network/local/cache_helper.dart';
 import 'package:shoping_application/shared/network/remote/dio/dio_helper.dart';
 import 'package:shoping_application/shared/obloc_observer.dart';
+
 import 'shared/network/style/themes.dart';
 
 void main() async {
@@ -31,7 +31,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   final Widget startWidget;
 
-  MyApp(this.startWidget);
+  const MyApp(this.startWidget, {super.key});
 
   // This widget is the root of your application.
   @override
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       debugShowCheckedModeBanner: false,
-      home: startWidget,
+      home: ShopLayoutScreen(),
     );
   }
 }

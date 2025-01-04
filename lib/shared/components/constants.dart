@@ -8,7 +8,7 @@
 //           child: Text('logout account')),
 //     );
 
-String token = '';
+String? token = '';
 
 List<Map<String, dynamic>> bannersContent = [
   {

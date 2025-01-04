@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shoping_application/model/home_model.dart';
 import 'package:shoping_application/shared/components/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 import '../network/style/colors.dart';
 
 Widget customeOnboarding({required Map model}) => Column(
@@ -13,8 +14,7 @@ Widget customeOnboarding({required Map model}) => Column(
             height: 300,
             width: 300,
             decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(model['image']), fit: BoxFit.cover),
+                image: DecorationImage(image: AssetImage(model['image']), fit: BoxFit.cover),
                 shape: BoxShape.circle),
           ),
         ),
@@ -27,10 +27,7 @@ Widget customeOnboarding({required Map model}) => Column(
                   Text(
                     model['title'],
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: textForm,
-                        fontSize: 32,
-                        fontWeight: FontWeight.w700),
+                    style: TextStyle(color: textForm, fontSize: 32, fontWeight: FontWeight.w700),
                   ),
                   Text(
                     model['subTitle'],
@@ -51,19 +48,14 @@ Widget customeOnboarding({required Map model}) => Column(
     );
 
 Future navigator({required context, required widget}) {
-  return Navigator.of(context)
-      .push(MaterialPageRoute(builder: (context) => widget));
+  return Navigator.of(context).push(MaterialPageRoute(builder: (context) => widget));
 }
 
-Future navigatorAndFinsh({required context, required widget}) {
-  return Navigator.of(context)
-      .pushReplacement(MaterialPageRoute(builder: (context) => widget));
+Future navigatorAndFinish({required context, required widget}) {
+  return Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => widget));
 }
 
-Widget signWith(
-        {required String title,
-        required Widget leading,
-        required VoidCallback onTapp}) =>
+Widget signWith({required String title, required Widget leading, required VoidCallback onTapp}) =>
     InkWell(
       onTap: onTapp,
       child: Container(
@@ -77,17 +69,13 @@ Widget signWith(
             title: Text(
               title,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: primaryColor,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500),
+              style: TextStyle(color: primaryColor, fontSize: 16, fontWeight: FontWeight.w500),
             ),
             leading: leading),
       ),
     );
 
-Widget defaultButton(
-        {required VoidCallback onTap, required String title, IconData? icon}) =>
+Widget defaultButton({required VoidCallback onTap, required String title, IconData? icon}) =>
     SizedBox(
       height: 54,
       width: double.infinity,
@@ -102,8 +90,7 @@ Widget defaultButton(
         label: Text(
           title,
           textAlign: TextAlign.center,
-          style: TextStyle(
-              color: subtextColor, fontSize: 16, fontWeight: FontWeight.w500),
+          style: TextStyle(color: subtextColor, fontSize: 16, fontWeight: FontWeight.w500),
         ),
         icon: Icon(
           icon,
@@ -130,12 +117,10 @@ Widget customTextFormField({
         autofocus: autofocus,
         obscureText: obscureText,
         cursorColor: primaryColor,
-        style: TextStyle(
-            color: primaryColor, fontWeight: FontWeight.w500, fontSize: 16),
+        style: TextStyle(color: primaryColor, fontWeight: FontWeight.w500, fontSize: 16),
         decoration: InputDecoration(
             errorBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide.none),
+                borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
             hintText: hintText,
             hintStyle: TextStyle(
               color: secondaryColor,
@@ -149,8 +134,7 @@ Widget customTextFormField({
                   width: 1,
                 )),
             enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide.none),
+                borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
             filled: true,
             fillColor: textForm,
             prefixIcon: Icon(
@@ -177,8 +161,7 @@ Widget divide(String title) => Row(
         ),
         Text(
           '  $title  ',
-          style: TextStyle(
-              color: secondaryColor, fontSize: 14, fontWeight: FontWeight.w400),
+          style: TextStyle(color: secondaryColor, fontSize: 14, fontWeight: FontWeight.w400),
         ),
         Expanded(
           child: Container(
@@ -190,9 +173,7 @@ Widget divide(String title) => Row(
     );
 
 Widget customIconButton(
-        {required VoidCallback onTap,
-        required IconData icon,
-        double iconSize = 28}) =>
+        {required VoidCallback onTap, required IconData icon, double iconSize = 28}) =>
     IconButton(
         iconSize: iconSize,
         padding: EdgeInsets.all(0),
@@ -214,8 +195,7 @@ Widget customIconButton(
 
 Widget customMainText({required String data}) => Text(
       data,
-      style: TextStyle(
-          fontSize: 48, fontWeight: FontWeight.w700, color: primaryColor),
+      style: TextStyle(fontSize: 48, fontWeight: FontWeight.w700, color: primaryColor),
     );
 Widget backIconButton({
   required context,
@@ -258,8 +238,7 @@ CarouselSliderController controller = CarouselSliderController();
 
 Widget carousalSliderLocal(
         {required List<Map<String, dynamic>> list,
-        required dynamic Function(int, CarouselPageChangedReason)?
-            onPageChanged,
+        required dynamic Function(int, CarouselPageChangedReason)? onPageChanged,
         required int currentIndex}) =>
     CarouselSlider(
       carouselController: controller,
@@ -326,9 +305,7 @@ Widget carousalSliderLocal(
     );
 
 Widget customProductsIcon(
-        {required VoidCallback function,
-        required IconData icon,
-        required String title}) =>
+        {required VoidCallback function, required IconData icon, required String title}) =>
     Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 20, 20),
       child: Column(

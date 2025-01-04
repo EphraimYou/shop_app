@@ -1,4 +1,5 @@
-import 'package:flutter/foundation.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoping_application/model/categories_model.dart';
@@ -27,7 +28,7 @@ class HomeCubit extends Cubit<HomeStates> {
 
   /* -------------------------------------------------------------------------- */
   List<Widget> screens = [
-    HomeScereen(),
+    HomeScreen(),
     CartScreen(),
     OrdersScreen(),
     WalletScrenn(),
@@ -36,8 +37,16 @@ class HomeCubit extends Cubit<HomeStates> {
 /* -------------------------------------------------------------------------- */
 /*                           get data for home screen                          */
 /* -------------------------------------------------------------------------- */
+
+  Future<void> getTwoFunctions() async {
+    Future.wait([
+      getHomeData(),
+      getCategories(),
+    ]);
+  }
+
   HomeModel? homeModel;
-  void getHomeData() {
+  Future<void> getHomeData() async {
     emit(ShopLoadingHomeDataState());
     DioHelper.getData(
       path: HOME,
@@ -59,22 +68,24 @@ class HomeCubit extends Cubit<HomeStates> {
 /*                             get Categories data                            */
 /* -------------------------------------------------------------------------- */
   CategoriesModel? categoryModel;
-  void getCategories() {
-    emit(CategoriesLoadingDataState());
+  Future<void> getCategories({bool isLoading = true}) async {
+    if (isLoading) {
+      emit(CategoriesLoadingDataState());
+    }
     DioHelper.getData(
       path: CATEGORIES,
       token: token,
     ).then((value) {
       categoryModel = CategoriesModel.fromJson(value.data);
       if (categoryModel != null) {
-        print(categoryModel!.data!.data[0].name);
+        log('Category: ${categoryModel?.data}');
         emit(CategoriesSuccessDataState());
-        print('length of category  ${categoryModel!.data!.data.length}');
+        debugPrint('length of category  ${categoryModel?.data?.data.length}');
       } else {
-        print('Error: The returned data from the API is null');
+        debugPrint('Error: The returned data from the API is null');
       }
     }).catchError((error) {
-      print('category catchError Ephraim ${error.toString()}');
+      debugPrint('category catchError Ephraim ${error.toString()}');
       emit(CategoriesErrorDataState());
     });
   }
