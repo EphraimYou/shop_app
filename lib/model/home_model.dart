@@ -43,6 +43,8 @@ class Products {
   double? discount;
   String? image;
   String? name;
+  String? description;
+  List<String>? images;
   bool? inFavorites;
   bool? inCart;
 
@@ -53,6 +55,8 @@ class Products {
     discount = (json['discount'] as num).toDouble(); // Convert to double
     image = json['image'];
     name = json['name'];
+    images = List<String>.from(json['images']);
+    description = json['description'];
     inFavorites = json['in_favorites'];
     inCart = json['in_cart'];
   }

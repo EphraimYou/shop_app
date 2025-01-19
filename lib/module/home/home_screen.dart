@@ -1,11 +1,11 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shoping_application/layout/cubit/home_cubit.dart';
 import 'package:shoping_application/module/favorite/favorite_screen.dart';
-import 'package:shoping_application/module/home/widgets/build_categories_widget.dart';
+import 'package:shoping_application/module/home/widgets/build_category_widget.dart';
+import 'package:shoping_application/module/home/widgets/build_product_widget.dart';
 import 'package:shoping_application/module/notification/notification_screen.dart';
+import 'package:shoping_application/module/product_details/product_details.dart';
 import 'package:shoping_application/module/search/search_screen.dart';
 import 'package:shoping_application/shared/components/components.dart';
 import 'package:shoping_application/shared/components/constants.dart';
@@ -36,7 +36,8 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           backgroundColor: Colors.grey[200],
-                          backgroundImage: AssetImage('assets/images/user-default.png'),
+                          backgroundImage:
+                              AssetImage('assets/images/user-default.png'),
                           radius: 24,
                         ),
                         SizedBox(
@@ -67,7 +68,11 @@ class HomeScreen extends StatelessWidget {
                         ),
                         IconButton(
                             onPressed: () {
-                              navigator(context: context, widget: NotificationScreen());
+                              navigator(
+                                context: context,
+                                // widget: NotificationScreen(),
+                                widget: ProductDetails(),
+                              );
                             },
                             icon: Stack(
                               alignment: Alignment.topRight,
@@ -81,13 +86,15 @@ class HomeScreen extends StatelessWidget {
                                   width: 9,
                                   height: 9,
                                   decoration: BoxDecoration(
-                                      color: Color(0xFFEE8B60), shape: BoxShape.circle),
+                                      color: Color(0xFFEE8B60),
+                                      shape: BoxShape.circle),
                                 )
                               ],
                             )),
                         IconButton(
                             onPressed: () {
-                              navigator(context: context, widget: FavoriteScreen());
+                              navigator(
+                                  context: context, widget: FavoriteScreen());
                             },
                             icon: Icon(
                               Icons.favorite_border,
@@ -114,7 +121,9 @@ class HomeScreen extends StatelessWidget {
                         title: Text(
                           'Search',
                           style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w400, color: secondaryColor),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: secondaryColor),
                         ),
                         trailing: Icon(Icons.filter_list),
                       ),
@@ -124,7 +133,9 @@ class HomeScreen extends StatelessWidget {
                         Text(
                           'Special Offers',
                           style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 18, color: primaryColor),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                              color: primaryColor),
                         ),
                         Spacer(),
                         TextButton(
@@ -146,64 +157,16 @@ class HomeScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: ConditionalBuilder(
-                        condition: state is! ShopLoadingHomeDataState,
-                        builder: (context) => carousalSliderLocal(
-                          list: bannersContent,
-                          onPageChanged: (index, reason) => {
-                            cubit.changeNavBar(index),
-                          },
-                          currentIndex: cubit.currentIndex,
-                        ),
-                        fallback: (context) => Center(
-                          child: Image(
-                            image: AssetImage('assets/images/loading_image.gif'),
-                          ),
-                        ),
+                      child: carousalSliderLocal(
+                        list: bannersContent,
+                        onPageChanged: (index, reason) => {
+                          cubit.changeNavBar(index),
+                        },
+                        currentIndex: cubit.currentIndex,
                       ),
                     ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          customProductsIcon(
-                              function: () {},
-                              icon: Icons.document_scanner_rounded,
-                              title: 'See All'),
-                          customProductsIcon(
-                            function: () {},
-                            icon: Icons.local_mall,
-                            title: 'Clothes',
-                          ),
-                          customProductsIcon(
-                            function: () {},
-                            icon: FontAwesomeIcons.shoePrints,
-                            title: 'Shoes',
-                          ),
-                          customProductsIcon(
-                            function: () {},
-                            icon: FontAwesomeIcons.utensils,
-                            title: 'Kitchen',
-                          ),
-                          customProductsIcon(
-                            function: () {},
-                            icon: FontAwesomeIcons.utensils,
-                            title: 'Kitchen',
-                          ),
-                          customProductsIcon(
-                            function: () {},
-                            icon: FontAwesomeIcons.utensils,
-                            title: 'Kitchen',
-                          ),
-                          customProductsIcon(
-                            function: () {},
-                            icon: FontAwesomeIcons.utensils,
-                            title: 'Kitchen',
-                          ),
-                        ],
-                      ),
-                    ),
-                    BuildCategoriesWidget(
+                    BuildCategoryWidget(),
+                    BuildProductWidget(
                       homeModel: cubit.homeModel,
                     ),
                   ],

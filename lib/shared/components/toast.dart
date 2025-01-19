@@ -7,7 +7,7 @@ void showMessage({
 }) =>
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        duration: const Duration(seconds: 15),
+        duration: const Duration(seconds: 5),
         behavior: SnackBarBehavior.floating,
         backgroundColor: chooseToastColor(state),
         showCloseIcon: true,

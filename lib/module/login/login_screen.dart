@@ -2,6 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shoping_application/layout/shop_layout_screen.dart';
+import 'package:shoping_application/shared/components/constants.dart';
 import 'package:shoping_application/shared/components/toast.dart';
 import 'package:shoping_application/shared/network/local/cache_helper.dart';
 
@@ -11,6 +12,7 @@ import '../signup/signup_screen.dart';
 import 'cubit/register_cubit.dart';
 import 'forgetpass_screen.dart';
 
+// ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
@@ -35,9 +37,10 @@ class LoginScreen extends StatelessWidget {
                 );
                 CacheHelper.saveData(
                   key: 'token',
-                  value: state.loginModel.data!.token,
+                  value: state.loginModel.data?.token,
                 ).then((onValue) {
-                  print(state.loginModel.data!.token);
+                  //! tack care must be save toke again because toke is kil
+                  token = state.loginModel.data?.token;
                   navigatorAndFinish(
                       // ignore: use_build_context_synchronously
                       context: context,
@@ -70,7 +73,9 @@ class LoginScreen extends StatelessWidget {
                       Text(
                         'Use demo account to have a better vision, it\'s pre filled.',
                         style: TextStyle(
-                            color: secondaryColor, fontSize: 18, fontWeight: FontWeight.w400),
+                            color: secondaryColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400),
                       ),
                       SizedBox(
                         height: 16,
@@ -101,12 +106,14 @@ class LoginScreen extends StatelessWidget {
                           },
                           hintText: '********',
                           obscureText: cubit.password,
-                          suffixIcon: cubit.password ? Icons.visibility_off : Icons.visibility,
+                          suffixIcon: cubit.password
+                              ? Icons.visibility_off
+                              : Icons.visibility,
                           onTapSuffixIcon: () {
-                            cubit.changeObsecure();
+                            cubit.changeObscure();
                           }),
                       CheckboxListTile(
-                        value: cubit.remeber,
+                        value: cubit.remember,
                         onChanged: (value) {
                           cubit.ChangeRememberMy();
                         },
@@ -147,12 +154,15 @@ class LoginScreen extends StatelessWidget {
                           alignment: Alignment.center,
                           child: TextButton(
                             onPressed: () {
-                              navigator(context: context, widget: ForgetpassScreen());
+                              navigator(
+                                  context: context, widget: ForgetPassScreen());
                             },
                             child: Text(
                               'Forgot the password?',
                               style: TextStyle(
-                                  color: primaryColor, fontSize: 14, fontWeight: FontWeight.w400),
+                                  color: primaryColor,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400),
                             ),
                           )),
                       divide('or continue with'),
@@ -163,7 +173,10 @@ class LoginScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           customIconButton(onTap: () {}, icon: Icons.apple),
-                          customIconButton(onTap: () {}, icon: Icons.g_mobiledata, iconSize: 50),
+                          customIconButton(
+                              onTap: () {},
+                              icon: Icons.g_mobiledata,
+                              iconSize: 50),
                         ],
                       ),
                       Row(
@@ -172,11 +185,14 @@ class LoginScreen extends StatelessWidget {
                           Text(
                             'Don’t have an account?',
                             style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w400, color: primaryColor),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: primaryColor),
                           ),
                           TextButton(
                               onPressed: () {
-                                navigator(context: context, widget: SignupScreen());
+                                navigator(
+                                    context: context, widget: SignupScreen());
                               },
                               child: Text(
                                 'Sign up',

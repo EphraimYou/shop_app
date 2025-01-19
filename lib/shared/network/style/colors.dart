@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-Color primaryColor = Color(0xff14181B);
-Color secondaryColor = Color(0xff57636C);
-Color textForm = Color(0xffF1F4F8);
-Color error = Color(0xffFF5963);
-Color subtextColor = Color(0xCCFFFFFF);
+const primaryColor = Color(0xff14181B);
+const secondaryColor = Color(0xff57636C);
+const backgroundColor = Color(0XFFF1F4F8);
+const textForm = Color(0xffF1F4F8);
+const error = Color(0xffFF5963);
+const subtextColor = Color(0xCCFFFFFF);
