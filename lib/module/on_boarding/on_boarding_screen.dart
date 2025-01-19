@@ -19,7 +19,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     {
       'image': 'assets/images/0_1_(13).jpeg',
       'title': 'World of perfection',
-      'subTitle': 'Feel like you are a queen in the world of perfection, to find your best fits.'
+      'subTitle':
+          'Feel like you are a queen in the world of perfection, to find your best fits.'
     },
     {
       'image': 'assets/images/0_3_(12).png',
@@ -67,7 +68,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 }
               },
               controller: controller,
-              itemBuilder: (context, index) => customeOnboarding(model: pages[index]),
+              itemBuilder: (context, index) =>
+                  customOnboarding(model: pages[index]),
               itemCount: pages.length,
             ),
           ),

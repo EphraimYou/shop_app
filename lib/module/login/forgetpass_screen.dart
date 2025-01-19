@@ -3,8 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../shared/components/components.dart';
 import '../../shared/network/style/colors.dart';
 
-class ForgetpassScreen extends StatelessWidget {
-  ForgetpassScreen({super.key});
+// ignore: must_be_immutable
+class ForgetPassScreen extends StatelessWidget {
+  ForgetPassScreen({super.key});
 
   TextEditingController emailController = TextEditingController();
 

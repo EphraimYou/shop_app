@@ -32,7 +32,9 @@ dependencies:
   carousel_slider: ^5.0.0
   conditional_builder_null_safety: ^0.0.6
   cupertino_icons: ^1.0.8
+  date_format: ^2.0.9
   dio: ^5.7.0
+  dropdown_button2: ^2.3.9
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
