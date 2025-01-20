@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shoping_application/layout/cubit/home_cubit.dart';
 import 'package:shoping_application/model/home_model.dart';
+import 'package:shoping_application/module/product_details/product_details.dart';
 import 'package:shoping_application/shared/components/constants.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../network/style/colors.dart';
@@ -375,93 +376,101 @@ Widget customProductsIcon({
       ),
     );
 
-Widget customProduct(model, {context}) => Column(
+Widget customProduct(
+        {model, required BuildContext context, required int index}) =>
+    Column(
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              alignment: Alignment.topRight,
-              children: [
-                Container(
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: Image(
-                    image: NetworkImage(model.image!),
-                    width: double.infinity,
-                    height: 180,
-                    // fit: BoxFit.cover,
-                  ),
-                ),
-                if (model.discount != 0)
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image(
-                      image: AssetImage('assets/images/discount.png'),
-                      width: 40,
-                      height: 40,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5.0),
-              child: Text(
-                model.name.toString(),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: primaryColor,
-                  fontWeight: FontWeight.w600,
-                  fontSize: 13,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 3.0),
-              child: Row(
+        GestureDetector(
+          onTap: () {
+            HomeCubit.get(context).assignIndex(index);
+            navigator(context: context, widget: ProductDetails(index: index));
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                alignment: Alignment.topRight,
                 children: [
-                  Text(
-                    '\$ ${model.price!.round()} ',
-                    style: TextStyle(
-                      color: primaryColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14.5,
+                  Container(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: Image(
+                      image: NetworkImage(model.image!),
+                      width: double.infinity,
+                      height: 180,
+                      // fit: BoxFit.cover,
                     ),
                   ),
                   if (model.discount != 0)
-                    Expanded(
-                      child: Text(
-                        '\$${model.oldPrice!.round()}',
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          decoration: TextDecoration.lineThrough,
-                          color: secondaryColor,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 13,
-                        ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image(
+                        image: AssetImage('assets/images/discount.png'),
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
                       ),
                     ),
-                  Spacer(),
-                  IconButton(
-                    padding: EdgeInsets.all(0),
-                    onPressed: () {
-                      // print(model.images);
-                      HomeCubit.get(context)
-                          .changeFavoriteData(model.id as int, context);
-                    },
-                    icon: HomeCubit.get(context).favorites[model.id]!
-                        ? Icon(Icons.favorite)
-                        : Icon(Icons.favorite_border),
-                    color: primaryColor,
-                  ),
                 ],
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                child: Text(
+                  model.name.toString(),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: primaryColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 13,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                child: Row(
+                  children: [
+                    Text(
+                      '\$ ${model.price!.round()} ',
+                      style: TextStyle(
+                        color: primaryColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.5,
+                      ),
+                    ),
+                    if (model.discount != 0)
+                      Expanded(
+                        child: Text(
+                          '\$${model.oldPrice!.round()}',
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            decoration: TextDecoration.lineThrough,
+                            color: secondaryColor,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 13,
+                          ),
+                        ),
+                      ),
+                    Spacer(),
+                    IconButton(
+                      padding: EdgeInsets.all(0),
+                      onPressed: () {
+                        // print(model.images);
+                        HomeCubit.get(context)
+                            .changeFavoriteData(model.id as int, context);
+                      },
+                      icon: HomeCubit.get(context).favorites[model.id]!
+                          ? Icon(Icons.favorite)
+                          : Icon(Icons.favorite_border),
+                      color: primaryColor,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

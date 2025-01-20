@@ -8,10 +8,12 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class CarousalSlider extends StatelessWidget {
   final dynamic Function(int, CarouselPageChangedReason)? onPageChanged;
   final int currentIndex;
+  final int productIndex;
   const CarousalSlider({
     super.key,
     required this.onPageChanged,
     required this.currentIndex,
+    required this.productIndex,
   });
 
   @override
@@ -22,7 +24,7 @@ class CarousalSlider extends StatelessWidget {
       items: HomeCubit.get(context)
           .homeModel
           ?.data
-          ?.products?[1]
+          ?.products?[productIndex]
           .images!
           .map((element) => Stack(
                 children: [
@@ -61,7 +63,7 @@ class CarousalSlider extends StatelessWidget {
                           count: HomeCubit.get(context)
                                   .homeModel
                                   ?.data
-                                  ?.products?[1]
+                                  ?.products?[productIndex]
                                   .images
                                   ?.length ??
                               0,

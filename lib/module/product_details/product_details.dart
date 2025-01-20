@@ -8,7 +8,8 @@ import 'package:shoping_application/module/product_details/widget/color_quantity
 import 'package:shoping_application/module/product_details/widget/product_description_widget.dart';
 
 class ProductDetails extends StatelessWidget {
-  const ProductDetails({super.key});
+  final int index;
+  const ProductDetails({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,9 @@ class ProductDetails extends StatelessWidget {
             HomeCubit cubit = HomeCubit.get(context);
             return Scaffold(
               backgroundColor: Colors.white,
-              bottomNavigationBar: BottomNavBarWidget(),
+              bottomNavigationBar: BottomNavBarWidget(
+                index: index,
+              ),
               body: ConditionalBuilder(
                 condition: cubit.homeModel != null,
                 builder: (context) => SingleChildScrollView(
@@ -33,13 +36,14 @@ class ProductDetails extends StatelessWidget {
                       SizedBox(
                         height: 350,
                         child: CarousalSlider(
+                          productIndex: index,
                           currentIndex: cubit.currentIndex,
                           onPageChanged: (index, reason) {
                             cubit.changeNavBar(index);
                           },
                         ),
                       ),
-                      productDescriptionWidget(context: context),
+                      productDescriptionWidget(context: context, index: index),
                       ColorQuantityWidget(),
                       // Divider(),
                       // BottomWidget(),

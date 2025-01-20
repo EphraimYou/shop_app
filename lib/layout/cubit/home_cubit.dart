@@ -35,6 +35,12 @@ class HomeCubit extends Cubit<HomeStates> {
     emit(ChangeToggleSelectionState());
   }
 
+  int? productIndex;
+  void assignIndex(int index) {
+    productIndex = index;
+    emit(ChangeProductIndexState());
+  }
+
   void incrementCounter() {
     counter++;
     emit(IncrementCounterState());

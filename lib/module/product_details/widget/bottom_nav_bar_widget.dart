@@ -5,7 +5,8 @@ import 'package:shoping_application/shared/components/components.dart';
 import 'package:shoping_application/shared/network/style/colors.dart';
 
 class BottomNavBarWidget extends StatelessWidget {
-  const BottomNavBarWidget({super.key});
+  final int index;
+  const BottomNavBarWidget({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class BottomNavBarWidget extends StatelessWidget {
                 text('Total price'),
                 Text(
                   // ignore: unnecessary_cast
-                  '${((HomeCubit.get(context).homeModel?.data?.products?[1].price ?? 0) as double) * (HomeCubit.get(context).counter ?? 1)}\$',
+                  '${((HomeCubit.get(context).homeModel?.data?.products?[index].price ?? 0) as double) * (HomeCubit.get(context).counter ?? 1)}\$',
                   style: TextStyle(
                     color: primaryColor,
                     fontSize: 22,

@@ -71,7 +71,9 @@ class HomeScreen extends StatelessWidget {
                               navigator(
                                 context: context,
                                 // widget: NotificationScreen(),
-                                widget: ProductDetails(),
+                                widget: ProductDetails(
+                                  index: cubit.productIndex ?? 0,
+                                ),
                               );
                             },
                             icon: Stack(
