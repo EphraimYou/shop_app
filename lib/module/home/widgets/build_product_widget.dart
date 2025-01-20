@@ -22,8 +22,10 @@ class BuildProductWidget extends StatelessWidget {
         childAspectRatio: 1 / 1.74,
       ),
       itemCount: homeModel?.data?.products?.length ?? 0,
-      itemBuilder: (context, index) =>
-          customProduct(homeModel!.data!.products![index], context: context),
+      itemBuilder: (context, index) => customProduct(
+          model: homeModel!.data!.products![index],
+          context: context,
+          index: index),
     );
   }
 }

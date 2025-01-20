@@ -4,6 +4,7 @@ import 'package:shoping_application/shared/network/style/colors.dart';
 
 Widget productDescriptionWidget({
   required BuildContext context,
+  required int index,
 }) =>
     Padding(
       padding: const EdgeInsetsDirectional.all(20),
@@ -11,7 +12,8 @@ Widget productDescriptionWidget({
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            HomeCubit.get(context).homeModel?.data?.products?[1].name ?? 'null',
+            HomeCubit.get(context).homeModel?.data?.products?[index].name ??
+                'null',
             style: TextStyle(
               color: primaryColor,
               fontSize: 32,
@@ -55,7 +57,7 @@ Widget productDescriptionWidget({
           text(HomeCubit.get(context)
                   .homeModel
                   ?.data
-                  ?.products?[1]
+                  ?.products?[index]
                   .description ??
               'null'),
         ],

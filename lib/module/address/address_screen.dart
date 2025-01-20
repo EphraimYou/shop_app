@@ -23,9 +23,10 @@ class AddressScreen extends StatelessWidget {
           return Scaffold(
             backgroundColor: backgroundColor,
             appBar: appBar(
-                context: context,
-                title: 'Address',
-                backgroundColor: backgroundColor),
+              context: context,
+              title: 'Address',
+              backgroundColor: backgroundColor,
+            ),
             body: ConditionalBuilder(
               condition: cubit.addressModel != null,
               builder: (context) => Column(

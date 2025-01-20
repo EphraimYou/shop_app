@@ -15,6 +15,8 @@ final class ChangeDropDownState extends HomeStates {}
 
 final class ChangeCheckBoxState extends HomeStates {}
 
+final class ChangeProductIndexState extends HomeStates {}
+
 final class ChangeToggleSelectionState extends HomeStates {}
 
 /* -------------------------------------------------------------------------- */

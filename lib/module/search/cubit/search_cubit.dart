@@ -21,6 +21,12 @@ class SearchCubit extends Cubit<SearchState> {
     emit(ChangeSearchIconState());
   }
 
+  int? productIndex;
+  void assignIndex(int index) {
+    productIndex = index;
+    emit(ChangeProductIndexState());
+  }
+
 /* -------------------------------------------------------------------------- */
   SearchModel? searchModel;
   void search({required String text}) {
